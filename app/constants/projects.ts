@@ -3,32 +3,32 @@ import { Project } from "../types";
 // TODO: Move this to API
 export const PROJECTS: Project[] = [
   {
-    title: 'Qatarat Nahl — Salla Store Automation',
+    title: 'Qatarat Nahl',
     date: 'Jul 2026',
-    subtext: 'End-to-end automation for a live Salla e-commerce store, built on n8n: an AI WhatsApp sales agent, hourly product sync, abandoned-cart recovery, and daily sales reports.',
+    subtext: 'AI automation for a live Salla store: WhatsApp sales agent, product sync, cart recovery, daily reports.',
   },
   {
     title: 'Perfect Fitness',
     date: 'Jul 2026',
-    subtext: "Bilingual (AR/EN) marketing website for a women's fitness club in Jeddah, with dark mode and full SEO setup.",
+    subtext: "Bilingual site for a women's gym in Jeddah, dark mode, full SEO.",
     url: 'https://perfect-fitness-jeddah.netlify.app',
   },
   {
     title: 'Halawiyat Alhafla',
     date: 'Jul 2026',
-    subtext: 'Marketing website for a bakery in Jeddah, featuring a live interactive 3D cake designer built with Three.js.',
+    subtext: 'Bakery site in Jeddah with a live 3D cake designer built in Three.js.',
     url: 'https://halawiyat-alhafla-jeddah.netlify.app',
   },
   {
-    title: 'Abu Saiba Plants & Flowers',
+    title: 'Abu Saiba Plants',
     date: 'Jul 2026',
-    subtext: 'Bilingual RTL marketing website for a plant nursery in Bahrain, with full SEO setup.',
+    subtext: 'Bilingual RTL site for a plant nursery in Bahrain, full SEO.',
     url: 'https://abuba200611-cmd.github.io/abu-saiba-plants/',
   },
   {
     title: 'Pharmacy Online',
     date: 'Jul 2026',
-    subtext: 'Full-stack pharmacy demo store: browsing, cart, checkout, prescription upload, and an admin dashboard for products/orders/prescriptions. Express + Drizzle ORM + local SQLite, React + Tailwind frontend.',
+    subtext: 'Full-stack demo store: cart, checkout, prescriptions, admin dashboard.',
     url: 'https://github.com/abuba200611-cmd/abk-Pharmacy-Online',
   },
 ];
