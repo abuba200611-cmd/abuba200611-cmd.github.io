@@ -4,19 +4,10 @@ export const FONTS = {
   en: {
     title: './soria-font.ttf',
     body: './Vercetti-Regular.woff',
-    lineHeight: 1.15,
-    letterSpacing: 0,
   },
   ar: {
     title: './Tajawal-Bold.ttf',
     body: './Tajawal-Regular.ttf',
-    // Tajawal's reported line metrics are tighter than the Latin fonts this
-    // template ships, so wrapped Arabic lines touch/overlap at the 'normal'
-    // line height — force extra breathing room instead.
-    lineHeight: 1.7,
-    // Any positive letter-spacing breaks Arabic letters' joined forms, so
-    // this must stay 0 (never animate it, unlike the Latin hover effect).
-    letterSpacing: 0,
   },
 };
 
@@ -36,12 +27,12 @@ export const TAGLINES: Record<Lang, string[]> = {
     'TEAM PLAYER',
   ],
   ar: [
-    'مهندس أتمتة',
-    'مصمم واجهات',
+    'مهندس أتمتة الذكاء الاصطناعي',
+    'مصمم واجهات وتجربة مستخدم',
     'مصمم جرافيك',
     'حلّال المشكلات',
     'سريع التعلم',
-    'روح الفريق',
+    'يعمل ضمن فريق',
   ],
 };
 

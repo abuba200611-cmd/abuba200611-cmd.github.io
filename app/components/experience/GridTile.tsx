@@ -131,8 +131,6 @@ const GridTile = (props: GridTileProps) => {
 
   const fontProps: Partial<TextProps> = {
     font: FONTS[lang].title,
-    lineHeight: FONTS[lang].lineHeight,
-    letterSpacing: FONTS[lang].letterSpacing,
     maxWidth: 2,
     anchorX: 'center',
     anchorY: 'bottom',

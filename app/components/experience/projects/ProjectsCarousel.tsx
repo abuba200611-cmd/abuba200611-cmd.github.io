@@ -16,27 +16,30 @@ const ProjectsCarousel = () => {
     setSelectedId(id === selectedId ? null : id);
   };
   const tiles = useMemo(() => {
-    // Total angular spread across the whole row (all tiles face the
-    // shared arc centre, matching the camera-pan mechanic below).
-    const fov = Math.PI / 2;
+    const fov = Math.PI;
     const distance = 10;
     const PROJECTS = PROJECTS_BY_LANG[lang];
-    const count = PROJECTS.length;
-    const y = isMobile ? 1.6 : 2;
+
+    const columns = Math.ceil(PROJECTS.length / 2);
 
     return PROJECTS.map((project, i) => {
-      // Single row, evenly spaced and centered — no vertical stacking.
-      const angle = count > 1 ? -fov / 2 + (fov / (count - 1)) * i : 0;
+      const row = i % 2; // 0 or 1
+      const column = Math.floor(i / 2);
+
+      const angle = (fov / columns) * column;
 
       const z = -distance * Math.sin(angle);
       const x = -distance * Math.cos(angle);
 
       const rotY = Math.PI / 2 - angle;
 
+      // vertical stacking
+      const y = row === 0 ? 3.25 : 1;
+      const datePosition = row === 0 ? 'top' : 'bottom';
       return (
         <ProjectTile
           key={i}
-          datePosition="top"
+          datePosition={datePosition}
           project={project}
           index={i}
           position={[x, y, z]}

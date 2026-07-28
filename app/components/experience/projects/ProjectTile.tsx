@@ -30,15 +30,11 @@ const ProjectTile = ({ project, index, position, rotation, activeId, onClick, da
 
   const titleProps = useMemo(() => ({
     font: FONTS[lang].title,
-    lineHeight: FONTS[lang].lineHeight,
-    letterSpacing: FONTS[lang].letterSpacing,
     color: "black",
   }), [lang]);
 
   const subtitleProps: Partial<TextProps> = useMemo(() => ({
     font: FONTS[lang].body,
-    lineHeight: FONTS[lang].lineHeight,
-    letterSpacing: FONTS[lang].letterSpacing,
     color: "black",
     anchorX: "left",
     anchorY: "top",

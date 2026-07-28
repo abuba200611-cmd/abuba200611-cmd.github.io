@@ -34,8 +34,6 @@ const Hero = () => {
   const fontProps = {
     font: FONTS[lang].title,
     fontSize: 1.2,
-    lineHeight: FONTS[lang].lineHeight,
-    letterSpacing: FONTS[lang].letterSpacing,
   };
 
   return (
