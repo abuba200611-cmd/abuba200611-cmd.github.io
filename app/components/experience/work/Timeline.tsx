@@ -1,19 +1,18 @@
 import { Box, Edges, Line, Text, TextProps } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { usePortalStore, useLangStore } from "@stores";
+import { usePortalStore } from "@stores";
 import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from "three";
 
-import { FONTS, WORK_TIMELINE_BY_LANG } from "@constants";
+import { WORK_TIMELINE } from "@constants";
 import { WorkTimelinePoint } from "@types";
 
 const reusableLeft = new THREE.Vector3(-0.3, 0, -0.1);
 const reusableRight = new THREE.Vector3(0.3, 0, -0.1);
 
 const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number }) => {
-  const lang = useLangStore((state) => state.lang);
   const getPoint = useMemo(() => {
     switch (point.position) {
       case 'left': return reusableLeft;
@@ -25,18 +24,18 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
   const textAlign = point.position === 'left' ? 'right' : 'left';
 
   const textProps: Partial<TextProps> = useMemo(() => ({
-    font: FONTS[lang].body,
+    font: "./Vercetti-Regular.woff",
     color: "white",
     anchorX: textAlign,
     fillOpacity: 2 - 2 * diff,
-  }), [textAlign, diff, lang]);
+  }), [textAlign, diff]);
 
   const titleProps = useMemo(() => ({
     ...textProps,
-    font: FONTS[lang].title,
+    font: "./soria-font.ttf",
     fontSize: 0.6,
     maxWidth: 3,
-  }), [textProps, lang]);
+  }), [textProps]);
 
   return (
     <group position={point.point} scale={isMobile ? 0.35 : 0.6}>
@@ -66,8 +65,7 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
 const Timeline = ({ progress }: { progress: number }) => {
   const { camera } = useThree();
   const isActive = usePortalStore((state) => state.activePortalId === 'work');
-  const lang = useLangStore((state) => state.lang);
-  const timeline = useMemo(() => WORK_TIMELINE_BY_LANG[lang], [lang]);
+  const timeline = useMemo(() => WORK_TIMELINE, []);
 
   const curve = useMemo(() => new THREE.CatmullRomCurve3(timeline.map(p => p.point), false), [timeline]);
   const curvePoints = useMemo(() => curve.getPoints(500), [curve]);

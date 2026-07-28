@@ -4,21 +4,18 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from "three";
-import { FONTS, FOOTER_LINKS_BY_LANG } from "../../constants";
-import { useLangStore } from "@stores";
+import { FOOTER_LINKS } from "../../constants";
 import { FooterLink } from "../../types";
 
-const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) => {
+const FooterLinkItem = ({ link }: { link: FooterLink }) => {
   const textRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const lang = useLangStore((state) => state.lang);
-  const hoverDivId = `footer-link-${index}`;
   const onPointerOver = () => setHovered(true);
   const onPointerOut = () => setHovered(false);
   const onClick = () => window.open(link.url, '_blank');
   const onPointerMove = (e: MouseEvent) => {
     if (isMobile) return;
-    const hoverDiv = document.getElementById(hoverDivId);
+    const hoverDiv = document.getElementById(`footer-link-${link.name}`);
     gsap.to(hoverDiv, {
       top: `${e.clientY + 14}px`,
       left: `${e.clientX}px`,
@@ -27,7 +24,7 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
   };
 
   const fontProps = {
-    font: FONTS[lang].body,
+    font: "./Vercetti-Regular.woff",
     fontSize: 0.2,
     color: 'white',
     onPointerOver,
@@ -37,9 +34,10 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
   };
 
   useEffect(() => {
-    if (!document.getElementById(hoverDivId)) {
+    if (!document.getElementById(`footer-link-${link.name}`)) {
       const hoverDiv = document.createElement('div');
-      hoverDiv.id = hoverDivId;
+      hoverDiv.id = `footer-link-${link.name}`;
+      hoverDiv.textContent = link.hoverText ?? link.name.toUpperCase();
       hoverDiv.style.position = 'fixed';
       hoverDiv.style.zIndex = '2';
       hoverDiv.style.bottom = '0';
@@ -49,19 +47,12 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
       hoverDiv.style.pointerEvents = 'none';
       document.body.appendChild(hoverDiv);
     }
-  }, [hoverDivId])
-
-  useEffect(() => {
-    const hoverDiv = document.getElementById(hoverDivId);
-    if (hoverDiv) {
-      hoverDiv.textContent = link.hoverText ?? link.name.toUpperCase();
-    }
-  }, [hoverDivId, link.hoverText, link.name])
+  }, [])
 
   useEffect(() => {
     if (isMobile) return
 
-    const hoverDiv = document.getElementById(hoverDivId);
+    const hoverDiv = document.getElementById(`footer-link-${link.name}`);
 
     if (hovered) {
       gsap.fromTo(hoverDiv, { opacity: 0 }, { opacity: 0.5, delay: 0.2 });
@@ -96,7 +87,6 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
 const Footer = () => {
   const groupRef = useRef<THREE.Group>(null);
   const data = useScroll();
-  const lang = useLangStore((state) => state.lang);
 
   useFrame(() => {
     const d = data.range(0.8, 0.2);
@@ -106,10 +96,10 @@ const Footer = () => {
   });
 
   const getLinks = () => {
-    return FOOTER_LINKS_BY_LANG[lang].map((link, i) => {
+    return FOOTER_LINKS.map((link, i) => {
       return (
         <group key={i} position={[i * (isMobile ? 1.1 : 2), 0, 0]}>
-          <FooterLinkItem link={link} index={i}/>
+          <FooterLinkItem link={link}/>
         </group>
       );
     });

@@ -2,13 +2,12 @@ import { useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import ProjectTile from "./ProjectTile";
 
-import { PROJECTS_BY_LANG } from "@constants";
-import { usePortalStore, useLangStore } from "@stores";
+import { PROJECTS } from "@constants";
+import { usePortalStore } from "@stores";
 
 const ProjectsCarousel = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const isActive = usePortalStore((state) => state.activePortalId === "projects");
-  const lang = useLangStore((state) => state.lang);
   const activeId = isActive ? selectedId : null;
 
   const onClick = (id: number) => {
@@ -18,7 +17,6 @@ const ProjectsCarousel = () => {
   const tiles = useMemo(() => {
     const fov = Math.PI;
     const distance = 10;
-    const PROJECTS = PROJECTS_BY_LANG[lang];
 
     const columns = Math.ceil(PROJECTS.length / 2);
 
@@ -49,7 +47,7 @@ const ProjectsCarousel = () => {
         />
       );
     });
-  }, [activeId, isActive, lang]);
+  }, [activeId, isActive]);
 
   return (
     <group rotation={[0, -Math.PI / 12, 0]}>

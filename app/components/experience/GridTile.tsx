@@ -1,12 +1,11 @@
 
 import { Edges, MeshPortalMaterial, Text, TextProps, useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { usePortalStore, useLangStore } from '@stores';
+import { usePortalStore } from '@stores';
 import gsap from "gsap";
 import { useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
 import * as THREE from 'three';
-import { FONTS } from '../../constants';
 import { TriangleGeometry } from './Triangle';
 
 interface GridTileProps {
@@ -29,7 +28,6 @@ const GridTile = (props: GridTileProps) => {
   const setActivePortal = usePortalStore((state) => state.setActivePortal);
   const isActive = usePortalStore((state) => state.activePortalId === id);
   const activePortalId = usePortalStore((state) => state.activePortalId);
-  const lang = useLangStore((state) => state.lang);
   const data = useScroll();
 
   useEffect(() => {
@@ -130,7 +128,7 @@ const GridTile = (props: GridTileProps) => {
   }
 
   const fontProps: Partial<TextProps> = {
-    font: FONTS[lang].title,
+    font: "./soria-font.ttf",
     maxWidth: 2,
     anchorX: 'center',
     anchorY: 'bottom',

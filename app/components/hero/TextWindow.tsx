@@ -4,14 +4,10 @@ import { Text, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
-import { FONTS, TAGLINES } from "../../constants";
-import { useLangStore } from "@stores";
 
 const TextWindow = () => {
   const data = useScroll();
   const windowRef = useRef<THREE.Group>(null);
-  const lang = useLangStore((state) => state.lang);
-  const [line1, line2, line3, line4, line5, line6] = TAGLINES[lang];
 
   useFrame(() => {
     const c = data.range(0.65, 0.15);
@@ -24,7 +20,7 @@ const TextWindow = () => {
   });
 
   const fontProps = {
-    font: FONTS[lang].title,
+    font: "./soria-font.ttf",
   };
 
   return (
@@ -36,7 +32,7 @@ const TextWindow = () => {
         {...fontProps}
         scale={[1, -1, 1]}
         rotation={[0, 0,  -Math.PI / 2]}>
-        {line1}
+        FRONTEND ENGINEER
       </Text>
 
       <Text color="white" anchorX="right" anchorY="middle"
@@ -45,7 +41,7 @@ const TextWindow = () => {
         fontSize={1.3}
         position={[0.12, 0, -1.4]}
         rotation={[0, 0,  -Math.PI / 2]}>
-        {line2}
+        DESIGNER. DEVELOPER
       </Text>
 
       <group position={[-0.45, 0, -0.3]}>
@@ -54,7 +50,7 @@ const TextWindow = () => {
           scale={[1, -1, 1]}
           fontSize={0.8}
           rotation={[0, -Math.PI / 2,  -Math.PI / 2]}>
-          {line3}
+          DESIGNER. DUMBASS.
         </Text>
 
         <Text color="white" anchorX="left" anchorY="middle"
@@ -63,7 +59,7 @@ const TextWindow = () => {
           fontSize={0.8}
           position={[0, 0, -0.6]}
           rotation={[0, -Math.PI / 2,  -Math.PI / 2]}>
-          {line4}
+          DJ. MELOMANIAC
         </Text>
       </group>
 
@@ -73,7 +69,7 @@ const TextWindow = () => {
           scale={[-1, -1, 1]}
           fontSize={0.8}
           rotation={[0, -Math.PI / 2,  -Math.PI / 2]}>
-          {line5}
+          GAMER. CREATIVE
         </Text>
         <Text color="white" anchorX="right" anchorY="middle"
           {...fontProps}
@@ -81,7 +77,7 @@ const TextWindow = () => {
           fontSize={0.8}
           position={[0, 0, -0.6]}
           rotation={[0, -Math.PI / 2,  -Math.PI / 2]}>
-          {line6}
+          CREATIVE. OPTIMIST
         </Text>
       </group>
     </group>

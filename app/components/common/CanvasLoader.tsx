@@ -9,7 +9,7 @@ import { isMobile } from "react-device-detect";
 
 import { useThemeStore } from "@stores";
 
-import LangSwitcher from "./LangSwitcher";
+import AwwardsBadge from "./AwwardsBadge";
 import Preloader from "./Preloader";
 import ProgressLoader from "./ProgressLoader";
 import { ScrollHint } from "./ScrollHint";
@@ -86,8 +86,8 @@ const CanvasLoader = (props: { children: React.ReactNode }) => {
         </Canvas>
         <ProgressLoader progress={progress} />
       </div>
+      <AwwardsBadge />
       <ThemeSwitcher />
-      <LangSwitcher />
       <ScrollHint />
     </div>
   );
