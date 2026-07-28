@@ -1,7 +1,8 @@
+import { Lang } from "@stores";
 import { Project } from "../types";
 
 // TODO: Move this to API
-export const PROJECTS: Project[] = [
+const PROJECTS_EN: Project[] = [
   {
     title: 'Qatarat Nahl — Salla Store Automation',
     date: 'Jul 2026',
@@ -26,3 +27,34 @@ export const PROJECTS: Project[] = [
     url: 'https://abuba200611-cmd.github.io/abu-saiba-plants/',
   },
 ];
+
+const PROJECTS_AR: Project[] = [
+  {
+    title: 'أتمتة متجر قطرات نحل (سلة)',
+    date: 'يوليو 2026',
+    subtext: 'أتمتة كاملة لمتجر سلة حقيقي مبنية على n8n: وكيل واتساب ذكي للمبيعات، مزامنة منتجات كل ساعة، استرجاع السلات المتروكة، وتقرير مبيعات يومي.',
+  },
+  {
+    title: 'بيرفكت فتنس',
+    date: 'يوليو 2026',
+    subtext: 'موقع تسويقي ثنائي اللغة لنادٍ رياضي نسائي بجدة، مع وضع داكن وتهيئة SEO كاملة.',
+    url: 'https://perfect-fitness-jeddah.netlify.app',
+  },
+  {
+    title: 'حلويات الحفلة',
+    date: 'يوليو 2026',
+    subtext: 'موقع تسويقي لمحل حلويات بجدة، مع مصمم كيكة ثلاثي الأبعاد تفاعلي مبني بـ Three.js.',
+    url: 'https://halawiyat-alhafla-jeddah.netlify.app',
+  },
+  {
+    title: 'أبو صيبع للنباتات والزهور',
+    date: 'يوليو 2026',
+    subtext: 'موقع تسويقي ثنائي اللغة (RTL) لمشتل نباتات وزهور بالبحرين، مع تهيئة SEO كاملة.',
+    url: 'https://abuba200611-cmd.github.io/abu-saiba-plants/',
+  },
+];
+
+export const PROJECTS_BY_LANG: Record<Lang, Project[]> = {
+  en: PROJECTS_EN,
+  ar: PROJECTS_AR,
+};

@@ -2,23 +2,28 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useEffect } from "react";
 
-import { usePortalStore, useScrollStore } from "@stores";
+import { SCROLL_HINTS } from "@constants";
+import { usePortalStore, useScrollStore, useLangStore } from "@stores";
 
 export const ScrollHint = () => {
   const portal = usePortalStore((state) => state.activePortalId);
   const scrollProgress = useScrollStore((state) => state.scrollProgress);
+  const lang = useLangStore((state) => state.lang);
+  const hints = SCROLL_HINTS[lang];
 
   // Show 'Scroll' for Hero and work portals, 'Pan' for Projects portal.
   let hintText = '';
+  let isPan = false;
   let showScrollHint = false;
   if (!portal) {
-    hintText = 'SCROLL';
+    hintText = hints.scroll;
     showScrollHint = scrollProgress === 0;
   } else if (portal === 'work') {
-    hintText = 'SCROLL';
+    hintText = hints.scroll;
     showScrollHint = scrollProgress === 0;
   } else {
-    hintText = 'PAN';
+    hintText = hints.pan;
+    isPan = true;
     showScrollHint = true;
   }
 
@@ -38,7 +43,7 @@ export const ScrollHint = () => {
     }
   }, [showScrollHint]);
 
-  const svgSrc = hintText === 'PAN' ? 'icons/chevrons-left-right.svg' : 'icons/chevrons-up-down.svg';
+  const svgSrc = isPan ? 'icons/chevrons-left-right.svg' : 'icons/chevrons-up-down.svg';
 
   return (
     <div className="fixed w-full bottom-5 scroll-hint" style={{ opacity: 0 }}>

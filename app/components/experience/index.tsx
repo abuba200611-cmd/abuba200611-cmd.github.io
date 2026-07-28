@@ -1,9 +1,10 @@
 import { Text, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { usePortalStore } from "@stores";
+import { usePortalStore, useLangStore } from "@stores";
 import { useRef } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from 'three';
+import { FONTS, SECTION_TITLES } from "../../constants";
 import GridTile from "./GridTile";
 import Projects from "./projects";
 import Work from "./work";
@@ -13,9 +14,10 @@ const Experience = () => {
   const groupRef = useRef<THREE.Group>(null);
   const data = useScroll();
   const isActive = usePortalStore((state) => !!state.activePortalId);
+  const lang = useLangStore((state) => state.lang);
 
   const fontProps = {
-    font: "./soria-font.ttf",
+    font: FONTS[lang].title,
     fontSize: 0.4,
     color: 'white',
   };
@@ -40,13 +42,19 @@ const Experience = () => {
   });
 
   const getTitle = () => {
-    const title = 'experience'.toUpperCase();
-    return title.split('').map((char, i) => {
-      const diff = isMobile ? 0.4 : 0.8;
-      return (
-        <Text key={i} {...fontProps} position={[i * diff, 2, 1]}>{char}</Text>
-      );
-    });
+    const title = SECTION_TITLES.experience[lang];
+    const diff = isMobile ? 0.4 : 0.8;
+
+    // Arabic letters connect to their neighbours, so splitting the word into
+    // separate Text nodes (one per character) breaks the joined letterforms.
+    // Only split for Latin script; render Arabic as a single shaped string.
+    if (lang !== 'en') {
+      return <Text key="ar-title" {...fontProps} position={[0, 2, 1]}>{title}</Text>;
+    }
+
+    return title.split('').map((char, i) => (
+      <Text key={i} {...fontProps} position={[i * diff, 2, 1]}>{char}</Text>
+    ));
   };
 
   return (
@@ -61,14 +69,14 @@ const Experience = () => {
         </group>
 
         <group position={[0, -1, 0]} ref={groupRef}>
-          <GridTile title='WORK AND EDUCATION'
+          <GridTile title={SECTION_TITLES.workEducation[lang]}
             id="work"
             color='#b9c6d6'
             textAlign='left'
             position={new THREE.Vector3(isMobile ? -1 : -2, 0, isMobile ? 0.4 : 0)}>
             <Work/>
           </GridTile>
-          <GridTile title='SIDE PROJECTS'
+          <GridTile title={SECTION_TITLES.sideProjects[lang]}
             id="projects"
             color='#bdd1e3'
             textAlign='right'

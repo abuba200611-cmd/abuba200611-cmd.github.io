@@ -5,7 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from "three";
 
-import { usePortalStore } from "@stores";
+import { FONTS, SECTION_TITLES } from "@constants";
+import { usePortalStore, useLangStore } from "@stores";
 import { Project } from "@types";
 
 interface ProjectTileProps {
@@ -23,20 +24,21 @@ const ProjectTile = ({ project, index, position, rotation, activeId, onClick, da
   const hoverAnimRef = useRef<gsap.core.Timeline | null>(null);
   const [desktopHovered, setDesktopHovered] = useState(false);
   const isProjectSectionActive = usePortalStore((state) => state.activePortalId === "projects");
+  const lang = useLangStore((state) => state.lang);
   const hovered = isMobile ? activeId === index : desktopHovered;
   const isTop = datePosition === 'top';
 
   const titleProps = useMemo(() => ({
-    font: "./soria-font.ttf",
+    font: FONTS[lang].title,
     color: "black",
-  }), []);
+  }), [lang]);
 
   const subtitleProps: Partial<TextProps> = useMemo(() => ({
-    font: "./Vercetti-Regular.woff",
+    font: FONTS[lang].body,
     color: "black",
     anchorX: "left",
     anchorY: "top",
-  }), []);
+  }), [lang]);
 
   useEffect(() => {
     if (!projectRef.current) return;
@@ -156,7 +158,7 @@ const ProjectTile = ({ project, index, position, rotation, activeId, onClick, da
               color="white"
               position={[-0.4, 0.15, 0.2]}
               fontSize={0.25}>
-              VIEW ↗
+              {SECTION_TITLES.view[lang]}
             </Text>
           </group>
         )}
