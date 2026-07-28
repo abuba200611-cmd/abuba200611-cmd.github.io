@@ -25,6 +25,9 @@ const TextWindow = () => {
 
   const fontProps = {
     font: FONTS[lang].title,
+    lineHeight: FONTS[lang].lineHeight,
+    letterSpacing: FONTS[lang].letterSpacing,
+    maxWidth: 2.4,
   };
 
   return (

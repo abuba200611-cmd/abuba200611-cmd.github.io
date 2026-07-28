@@ -29,6 +29,9 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
     color: "white",
     anchorX: textAlign,
     fillOpacity: 2 - 2 * diff,
+    lineHeight: FONTS[lang].lineHeight,
+    letterSpacing: FONTS[lang].letterSpacing,
+    maxWidth: 3,
   }), [textAlign, diff, lang]);
 
   const titleProps = useMemo(() => ({

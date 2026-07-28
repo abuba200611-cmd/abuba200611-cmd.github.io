@@ -20,6 +20,8 @@ const Experience = () => {
     font: FONTS[lang].title,
     fontSize: 0.4,
     color: 'white',
+    lineHeight: FONTS[lang].lineHeight,
+    letterSpacing: FONTS[lang].letterSpacing,
   };
 
   useFrame((sate, delta) => {

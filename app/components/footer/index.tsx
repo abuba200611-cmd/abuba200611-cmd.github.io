@@ -30,6 +30,7 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
     font: FONTS[lang].body,
     fontSize: 0.2,
     color: 'white',
+    lineHeight: FONTS[lang].lineHeight,
     onPointerOver,
     onPointerMove,
     onPointerOut,
@@ -69,16 +70,20 @@ const FooterLinkItem = ({ link, index }: { link: FooterLink, index: number }) =>
       gsap.to(hoverDiv, { opacity: 0 });
     }
 
-    gsap.to(textRef.current, {
-      letterSpacing: hovered ? 0.3 : 0,
-      duration: 0.3,
-    });
+    // Positive letter-spacing breaks Arabic letters' joined forms, so only
+    // animate it for the Latin font.
+    if (lang === 'en') {
+      gsap.to(textRef.current, {
+        letterSpacing: hovered ? 0.3 : 0,
+        duration: 0.3,
+      });
+    }
 
     return () => {
       gsap.killTweensOf(hoverDiv);
       gsap.killTweensOf(textRef.current);
     }
-  }, [hovered]);
+  }, [hovered, lang]);
 
   useCursor(hovered);
 
