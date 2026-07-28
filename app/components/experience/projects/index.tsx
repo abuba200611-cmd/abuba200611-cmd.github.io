@@ -18,6 +18,9 @@ const Projects = () => {
     // Hide scrollbar when active.
     data.el.style.overflow = isActive ? 'hidden' : 'auto';
     if (isActive) {
+      // Start centered on the row of project tiles (angle 0) rather than
+      // wherever the camera was left pointing from a previous portal visit.
+      camera.rotation.y = 0;
       if (isMobile) {
         gsap.to(camera.position, { z: 11.5, y: -39, x: 1, duration: 1 });
       } else {

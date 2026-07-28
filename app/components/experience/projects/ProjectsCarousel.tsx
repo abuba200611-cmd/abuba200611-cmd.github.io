@@ -17,9 +17,12 @@ const ProjectsCarousel = () => {
 
   const tiles = useMemo(() => {
     // Single row, evenly spaced along one arc — no vertical stacking, so
-    // tiles can never land on top of each other regardless of count.
-    const fov = Math.PI / 2;
-    const distance = 10;
+    // tiles can never land on top of each other regardless of count. A
+    // narrower fov keeps the whole row inside the camera's default view
+    // (no panning needed to see everything); distance is scaled up to
+    // compensate so the tighter angle doesn't crowd the tiles together.
+    const fov = Math.PI / 3;
+    const distance = 17;
     const count = PROJECTS.length;
     const y = isMobile ? 1.6 : 2;
 
@@ -47,7 +50,7 @@ const ProjectsCarousel = () => {
   }, [activeId, isActive]);
 
   return (
-    <group rotation={[0, -Math.PI / 12, 0]}>
+    <group>
       {tiles}
     </group>
   );
