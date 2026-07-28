@@ -14,30 +14,30 @@ const ProjectsCarousel = () => {
     if (!isMobile) return;
     setSelectedId(id === selectedId ? null : id);
   };
-
   const tiles = useMemo(() => {
-    // Single row, evenly spaced along one arc — no vertical stacking, so
-    // tiles can never land on top of each other regardless of count. A
-    // narrower fov keeps the whole row inside the camera's default view
-    // (no panning needed to see everything); distance is scaled up to
-    // compensate so the tighter angle doesn't crowd the tiles together.
-    const fov = Math.PI / 3;
-    const distance = 17;
-    const count = PROJECTS.length;
-    const y = isMobile ? 1.6 : 2;
+    const fov = Math.PI;
+    const distance = 10;
+
+    const columns = Math.ceil(PROJECTS.length / 2);
 
     return PROJECTS.map((project, i) => {
-      const angle = count > 1 ? -fov / 2 + (fov / (count - 1)) * i : 0;
+      const row = i % 2; // 0 or 1
+      const column = Math.floor(i / 2);
+
+      const angle = (fov / columns) * column;
 
       const z = -distance * Math.sin(angle);
       const x = -distance * Math.cos(angle);
 
       const rotY = Math.PI / 2 - angle;
 
+      // vertical stacking
+      const y = row === 0 ? 3.25 : 1;
+      const datePosition = row === 0 ? 'top' : 'bottom';
       return (
         <ProjectTile
           key={i}
-          datePosition="top"
+          datePosition={datePosition}
           project={project}
           index={i}
           position={[x, y, z]}
@@ -50,7 +50,7 @@ const ProjectsCarousel = () => {
   }, [activeId, isActive]);
 
   return (
-    <group>
+    <group rotation={[0, -Math.PI / 12, 0]}>
       {tiles}
     </group>
   );
