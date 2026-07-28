@@ -26,6 +26,12 @@ const PROJECTS_EN: Project[] = [
     subtext: 'Bilingual RTL marketing website for a plant nursery in Bahrain, with full SEO setup.',
     url: 'https://abuba200611-cmd.github.io/abu-saiba-plants/',
   },
+  {
+    title: 'Pharmacy Online',
+    date: 'Jul 2026',
+    subtext: 'Full-stack pharmacy demo store: browsing, cart, checkout, prescription upload, and an admin dashboard for products/orders/prescriptions. Express + Drizzle ORM + local SQLite, React + Tailwind frontend.',
+    url: 'https://github.com/abuba200611-cmd/abk-Pharmacy-Online',
+  },
 ];
 
 const PROJECTS_AR: Project[] = [
@@ -51,6 +57,12 @@ const PROJECTS_AR: Project[] = [
     date: 'يوليو 2026',
     subtext: 'موقع تسويقي ثنائي اللغة (RTL) لمشتل نباتات وزهور بالبحرين، مع تهيئة SEO كاملة.',
     url: 'https://abuba200611-cmd.github.io/abu-saiba-plants/',
+  },
+  {
+    title: 'صيدلية أونلاين',
+    date: 'يوليو 2026',
+    subtext: 'متجر صيدلية تجريبي متكامل: تصفح وطلب، سلة، رفع وصفة طبية، ولوحة تحكم إدارية للمنتجات والطلبات والوصفات. Express وDrizzle ORM وSQLite محلية، وواجهة React وTailwind.',
+    url: 'https://github.com/abuba200611-cmd/abk-Pharmacy-Online',
   },
 ];
 
