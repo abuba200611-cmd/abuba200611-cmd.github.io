@@ -15,12 +15,12 @@ const vercettiFont = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com/'),
-  title: "Mohit Virli ✌️",
-  description: "A frontend developer by profession, a creative at heart.",
-  keywords: "Mohit Virli, Frontend Engineer, React Developer, Three.js, Creative Developer, Web Development, Angular, JavaScript, TypeScript, Portfolio",
-  authors: [{ name: "Mohit Virli" }],
-  creator: "Mohit Virli",
-  publisher: "Mohit Virli",
+  title: "Abubakr Mala ✌️",
+  description: "AI automation engineer, UI/UX and graphic designer building AI-powered web apps and workflow automation.",
+  keywords: "Abubakr Mala, AI Automation Engineer, UI/UX Designer, Graphic Designer, n8n, Next.js, Web Development, Portfolio, Jeddah, Saudi Arabia",
+  authors: [{ name: "Abubakr Mala" }],
+  creator: "Abubakr Mala",
+  publisher: "Abubakr Mala",
   formatDetection: {
     email: false,
     address: false,
@@ -37,19 +37,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mohit Virli - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
-    siteName: "Mohit Virli's Portfolio",
+    title: "Abubakr Mala - AI Automation Engineer",
+    description: "AI automation engineer, UI/UX and graphic designer.",
+    siteName: "Abubakr Mala's Portfolio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohit Virli - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
-  },
-  verification: {
-    google: "GsRYY-ivL0F_VKkfs5KAeToliqz0gCrRAJKKmFkAxBA",
+    title: "Abubakr Mala - AI Automation Engineer",
+    description: "AI automation engineer, UI/UX and graphic designer.",
   },
 };
 
