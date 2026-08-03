@@ -35,6 +35,11 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
     font: "./soria-font.ttf",
     fontSize: 0.6,
     maxWidth: 3,
+    // Long titles (e.g. "Halaqat Tahfeez") wrap to two lines. Anchoring to
+    // the top keeps the block growing downward from a fixed point instead
+    // of expanding upward into the year label above it.
+    anchorY: "top" as const,
+    lineHeight: 1.15,
   }), [textProps]);
 
   return (
@@ -52,7 +57,11 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
             <Text {...titleProps} fontSize={0.6} maxWidth={3} position={[0, -diff / 2, 0]}>
               {point.title}
             </Text>
-            <Text {...textProps} fontSize={0.2} position={[0, -0.4 - diff, 0]}>
+            {/* Fixed gap sized for a worst-case two-line title (see titleProps
+                anchorY note above) so long titles never collide with the
+                subtitle below them; short single-line titles just get a
+                bit more breathing room instead. */}
+            <Text {...textProps} fontSize={0.2} position={[0, -1.7 - diff * 0.3, 0]}>
               {point.subtitle}
             </Text>
           </group>
