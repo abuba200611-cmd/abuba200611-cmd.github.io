@@ -61,7 +61,7 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
                 anchorY note above) so long titles never collide with the
                 subtitle below them; short single-line titles just get a
                 bit more breathing room instead. */}
-            <Text {...textProps} fontSize={0.2} position={[0, -1.7 - diff * 0.3, 0]}>
+            <Text {...textProps} fontSize={0.2} position={[0, -2.3 - diff * 0.2, 0]}>
               {point.subtitle}
             </Text>
           </group>
