@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "@utils";
 
 /**
  * Partially AI Generated

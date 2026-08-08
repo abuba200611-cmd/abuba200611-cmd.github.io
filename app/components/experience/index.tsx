@@ -2,7 +2,7 @@ import { Text, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { usePortalStore } from "@stores";
 import { useRef } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import * as THREE from 'three';
 import GridTile from "./GridTile";
 import Projects from "./projects";

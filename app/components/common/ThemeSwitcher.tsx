@@ -5,13 +5,16 @@ import { usePortalStore, useThemeStore } from "@stores";
 import gsap from "gsap";
 import Image from 'next/image';
 import { useEffect, useRef } from "react";
-import { isMobile } from "react-device-detect";
+
+// Placed with a CSS breakpoint rather than device detection: this markup is
+// prerendered, and React does not patch a className that only differs after
+// hydration, so a JS-picked class left phones with the desktop offset.
+const positionClass = 'top-2 right-2 sm:top-6 sm:right-6';
 
 const ThemeSwitcher = () => {
   const themeSwitcherRef = useRef<HTMLDivElement>(null);
   const { nextTheme, theme } = useThemeStore();
   const isActive = usePortalStore((state) => state.activePortalId);
-  const positionClass = isMobile ? 'top-2 right-2' : 'top-6 right-6';
   const toggleTheme = () => nextTheme();
 
   useGSAP(() => {

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import ProjectTile from "./ProjectTile";
 
 import { PROJECTS } from "@constants";

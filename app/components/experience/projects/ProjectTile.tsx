@@ -2,7 +2,7 @@ import { Edges, Text, TextProps } from "@react-three/drei";
 import { ThreeEvent } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import * as THREE from "three";
 
 import { usePortalStore } from "@stores";

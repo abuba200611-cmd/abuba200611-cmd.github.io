@@ -2,7 +2,7 @@
 
 import { useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import * as THREE from "three";
 
 import { usePortalStore, useScrollStore } from "@stores";

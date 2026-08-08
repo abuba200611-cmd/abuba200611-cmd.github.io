@@ -3,7 +3,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { usePortalStore } from "@stores";
 import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import * as THREE from "three";
 
 import { WORK_TIMELINE } from "@constants";
@@ -11,9 +11,14 @@ import { WorkTimelinePoint } from "@types";
 
 const reusableLeft = new THREE.Vector3(-0.3, 0, -0.1);
 const reusableRight = new THREE.Vector3(0.3, 0, -0.1);
+// A phone is too narrow to hang a caption off one side of its marker: the text
+// runs past whichever edge it points at. Centre it under the marker instead, so
+// it only needs half the width on each side and the font stays readable.
+const reusableBelow = new THREE.Vector3(0, -0.55, -0.1);
 
 const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number }) => {
   const getPoint = useMemo(() => {
+    if (isMobile) return reusableBelow;
     switch (point.position) {
       case 'left': return reusableLeft;
       case 'right': return reusableRight;
@@ -21,7 +26,7 @@ const TimelinePoint = ({ point, diff }: { point: WorkTimelinePoint, diff: number
     }
   }, [point.position]);
 
-  const textAlign = point.position === 'left' ? 'right' : 'left';
+  const textAlign = isMobile ? 'center' : (point.position === 'left' ? 'right' : 'left');
 
   const textProps: Partial<TextProps> = useMemo(() => ({
     font: "./Vercetti-Regular.woff",

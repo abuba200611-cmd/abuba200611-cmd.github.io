@@ -4,7 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { usePortalStore } from '@stores';
 import gsap from "gsap";
 import { useEffect, useRef } from 'react';
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "@utils";
 import * as THREE from 'three';
 import { TriangleGeometry } from './Triangle';
 

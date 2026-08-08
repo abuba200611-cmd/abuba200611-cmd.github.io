@@ -5,7 +5,7 @@ import { AdaptiveDpr, Preload, ScrollControls, useProgress } from "@react-three/
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
 import { Suspense, useRef, useSyncExternalStore } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 
 import { useThemeStore } from "@stores";
 

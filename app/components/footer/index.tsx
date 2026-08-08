@@ -2,7 +2,7 @@ import { Svg, Text, useCursor, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile } from "@utils";
 import * as THREE from "three";
 import { FOOTER_LINKS } from "../../constants";
 import { FooterLink } from "../../types";
