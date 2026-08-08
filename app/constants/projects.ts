@@ -31,4 +31,19 @@ export const PROJECTS: Project[] = [
     subtext: 'Full-stack demo store: cart, checkout, prescriptions, admin dashboard.',
     url: 'https://github.com/abuba200611-cmd/abk-Pharmacy-Online',
   },
+  {
+    title: 'Halaqat Tahfeez',
+    date: 'Jul 2026',
+    subtext: 'Matches Quran circle students for mutual recitation and builds their review schedule.',
+  },
+  {
+    title: 'Tasjeel Tullab',
+    date: 'Jul 2026',
+    subtext: 'Lets Quran students log their own daily memorization and review, no teacher needed.',
+  },
+  {
+    title: 'Salla Templates',
+    date: 'Aug 2026',
+    subtext: 'n8n automation templates for small Salla merchants: abandoned cart recovery and more.',
+  },
 ];
