@@ -15,16 +15,21 @@ const ProjectsCarousel = () => {
     setSelectedId(id === selectedId ? null : id);
   };
   const tiles = useMemo(() => {
-    const fov = Math.PI;
     const distance = 10;
 
-    const columns = Math.ceil(PROJECTS.length / 2);
+    // A fixed angle per column, not a fixed total spread divided across
+    // however many columns there happen to be — the old `fov / columns`
+    // math meant the gap between adjacent tiles reflowed every time a
+    // project was added or removed (more columns packed into the same
+    // 180° spread pulled everything closer; fewer pushed them apart).
+    // 36° keeps the on-screen gap the same regardless of project count.
+    const angleStep = Math.PI / 5;
 
     return PROJECTS.map((project, i) => {
       const row = i % 2; // 0 or 1
       const column = Math.floor(i / 2);
 
-      const angle = (fov / columns) * column;
+      const angle = angleStep * column;
 
       const z = -distance * Math.sin(angle);
       const x = -distance * Math.cos(angle);
