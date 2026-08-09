@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /_next/static/chunks/
+
+Sitemap: https://example.com/sitemap.xml
