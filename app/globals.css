@@ -1,90 +1,137 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   ABK design tokens
+   Gold #c9a84c on near-black. Display: Bebas Neue. Body: Cairo.
+   ========================================================================== */
+
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-serif: var(--font-soria);
-  --font-sans: var(--font-vercetti);
+  --color-ink: #0b0b0c;
+  --color-ink-2: #131316;
+  --color-ink-3: #1c1c21;
+  --color-line: #2a2a31;
+  --color-gold: #c9a84c;
+  --font-display: var(--font-bebas);
+  --font-sans: var(--font-cairo);
+}
+
+@theme {
+  --color-gold-soft: #e4cd8a;
+  --color-mist: #a6a6b0;
+  --color-chalk: #ededf0;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --tb-h: 56px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-* {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none;
+/* Only the root gets a painted background. A background on <body> paints
+   ON TOP of the fixed z-index:-1 wallpaper and would hide it entirely. */
+html {
+  background: var(--color-ink);
 }
 
 body {
-  overscroll-behavior: none;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: var(--color-chalk);
 }
 
-:root {
-  --scrollbarColor: #FFF;
-  --scrollbarBackground: rgba(0, 0, 0, 0);
+body {
+  min-height: 100dvh;
 }
 
-::-webkit-scrollbar {
-  width: 7px;
+/* ---------- wallpaper ------------------------------------------------- */
+
+.abk-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(58% 46% at 80% 2%, #2b2416 0%, #16140e 42%, transparent 68%),
+    radial-gradient(70% 60% at 8% 96%, #101219 0%, transparent 58%),
+    linear-gradient(180deg, #0c0c0f 0%, #070709 100%);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--scrollbarBackground);
-}
-::-webkit-scrollbar-thumb {
-  border-bottom: 100vh solid var(--scrollbarColor);
-}
-
-.close {
+/* light beams — the geometry of the reference, none of its imagery */
+.abk-beam {
   position: absolute;
-  left: 32px;
-  top: 32px;
-  width: 48px;
-  height: 48px;
-  opacity: 0.3;
-  cursor: pointer;
+  top: -30%;
+  left: 78%;
+  width: 15vmax;
+  height: 175vmax;
+  transform-origin: 50% 0%;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 208, 145, 0.30) 0%,
+    rgba(201, 168, 76, 0.10) 26%,
+    rgba(201, 168, 76, 0.028) 52%,
+    transparent 74%
+  );
+  filter: blur(16px);
+  pointer-events: none;
 }
 
-@media screen and (max-width: 768px) {
-  .close {
-    margin-left: -24px;
-    margin-top: -16px;
+.abk-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.06) 1px, transparent 1px);
+  background-size: 78px 78px;
+  mask-image: radial-gradient(62% 52% at 74% 16%, #000 0%, transparent 76%);
+  pointer-events: none;
+}
+
+.abk-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(100% 80% at 62% 26%, transparent 30%, rgba(0, 0, 0, 0.55) 72%, rgba(0, 0, 0, 0.86) 100%);
+  pointer-events: none;
+}
+
+/* ---------- shared surfaces ------------------------------------------- */
+
+.abk-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.abk-rule {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.55), rgba(201, 168, 76, 0.06) 60%, transparent);
+}
+
+.abk-focus:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-.close:hover {
-  opacity: 1;
+/* The taskbar sits over scrolling content, so it is opaque by design —
+   translucency let page text read straight through it. */
+.abk-taskbar {
+  background: rgba(10, 10, 12, 0.94);
+  border-top: 1px solid rgba(201, 168, 76, 0.16);
+  box-shadow: 0 -14px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
-.close:before, .close:after {
-  position: absolute;
-  left: 2rem;
-  content: ' ';
-  height: 48px;
-  width: 2px;
-  background-color: #0a0a0a;
-}
-
-.close:before {
-  transform: rotate(45deg);
-}
-
-.close:after {
-  transform: rotate(-45deg);
+@supports not (backdrop-filter: blur(1px)) {
+  .abk-taskbar {
+    background: #0a0a0c;
+  }
 }
