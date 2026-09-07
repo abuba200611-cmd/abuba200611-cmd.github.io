@@ -24,7 +24,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const OWNER = {
   name: "Abubakr Mala",
-  brand: "ABK",
+  brand: "AM",
   role: "AI Automation Engineer",
   location: "Jeddah, Saudi Arabia",
 };

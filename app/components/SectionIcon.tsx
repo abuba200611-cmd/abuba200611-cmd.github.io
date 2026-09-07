@@ -3,7 +3,7 @@ import type { SectionSlug } from "../data/sections";
 type Props = { slug: SectionSlug; className?: string };
 
 /**
- * Original line icons drawn for ABK. One visual idea each:
+ * Original line icons drawn for the AM identity. One visual idea each:
  * automation = a node graph, web = a layout frame, ui-ux = a wireframe flow,
  * graphic = overlapping print plates, photography = an aperture.
  */
