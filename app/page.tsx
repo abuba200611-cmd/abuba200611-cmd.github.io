@@ -7,14 +7,14 @@ export default function Desktop() {
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-3.5rem)] max-w-[1200px] flex-col justify-center px-5 py-10 sm:px-8">
       <header className="mb-9 sm:mb-12">
-        <p className="text-[11px] tracking-[0.34em] text-[#c9a84c] uppercase">
+        <p className="text-[11px] tracking-[0.34em] text-accent-ink uppercase">
           {OWNER.brand} — {OWNER.location}
         </p>
-        <h1 className="mt-3 font-display text-[clamp(2.6rem,8vw,5.2rem)] leading-[0.92] tracking-[0.02em] text-[#ededf0]">
+        <h1 className="mt-3 font-display text-[clamp(2.3rem,7.2vw,4.8rem)] leading-[1.02] tracking-[0.005em] text-ink">
           {OWNER.name}
         </h1>
         <div className="abk-rule mt-4 max-w-[420px]" />
-        <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-[#a6a6b0]">
+        <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-muted">
           I build automation that runs a business while its owner sleeps — and
           the interfaces people actually want to open. Pick a folder.
         </p>
@@ -26,23 +26,23 @@ export default function Desktop() {
             <li key={s.slug}>
               <Link
                 href={s.href}
-                className="abk-glass abk-focus group relative flex h-full flex-col gap-3 rounded-2xl p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#c9a84c]/45 hover:bg-[#c9a84c]/[0.06] sm:p-5"
+                className="abk-glass abk-focus group relative flex h-full flex-col gap-3 rounded-2xl p-4 transition-all duration-200 hover:-translate-y-1 hover:border-accent-line-strong hover:bg-accent-soft sm:p-5"
               >
-                <span className="text-[#c9a84c] transition-colors group-hover:text-[#e4cd8a]">
+                <span className="text-accent-ink transition-colors group-hover:text-ink">
                   <SectionIcon slug={s.slug} className="h-11 w-11" />
                 </span>
 
                 <span className="mt-auto">
-                  <span className="block font-display text-[19px] leading-tight tracking-[0.05em] text-[#ededf0] sm:text-[21px]">
+                  <span className="block font-display text-[16px] leading-tight font-semibold tracking-[0.02em] text-ink break-words sm:text-[19px]">
                     {s.label.toUpperCase()}
                   </span>
-                  <span className="mt-1 block text-[12px] leading-snug text-[#8a8a94]">
+                  <span className="mt-1 block text-[12px] leading-snug text-faint">
                     {s.tagline}
                   </span>
                 </span>
 
                 {!s.ready && (
-                  <span className="absolute right-3 top-3 rounded-full border border-white/12 bg-black/40 px-2 py-[3px] text-[9px] tracking-[0.13em] text-[#8a8a94] uppercase">
+                  <span className="absolute right-3 top-3 rounded-full border border-line-2 bg-surface-2 px-2 py-[3px] text-[9px] tracking-[0.13em] text-faint uppercase">
                     Soon
                   </span>
                 )}

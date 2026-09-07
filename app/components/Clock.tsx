@@ -22,7 +22,7 @@ export default function Clock() {
   return (
     <span
       suppressHydrationWarning
-      className="hidden w-[46px] text-right font-display text-[15px] tracking-[0.08em] text-[#a6a6b0] tabular-nums sm:block"
+      className="hidden w-[46px] text-right text-[13px] tracking-[0.06em] text-muted tabular-nums sm:block"
     >
       {now ?? ""}
     </span>

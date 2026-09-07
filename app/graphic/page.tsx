@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Brand and visual identity work by Abubakr Mala — in preparation.",
 };
 
-/** Print-plate motif: overlapping process colours in the ABK palette. */
+/** Print-plate motif: overlapping process plates in the AM blues. */
 function PlatesMotif() {
   return (
     <svg
@@ -16,12 +16,12 @@ function PlatesMotif() {
       className="h-[120px] w-full max-w-[420px]"
       aria-hidden="true"
     >
-      <g style={{ mixBlendMode: "screen" }}>
-        <circle cx="126" cy="56" r="36" fill="#c9a84c" opacity="0.5" />
-        <circle cx="158" cy="56" r="36" fill="#8a7233" opacity="0.5" />
-        <circle cx="142" cy="80" r="36" fill="#e4cd8a" opacity="0.32" />
+      <g className="abk-plates">
+        <circle cx="126" cy="56" r="36" fill="var(--plate-1)" opacity="0.55" />
+        <circle cx="158" cy="56" r="36" fill="var(--plate-2)" opacity="0.55" />
+        <circle cx="142" cy="80" r="36" fill="var(--plate-3)" opacity="0.5" />
       </g>
-      <g stroke="#c9a84c" strokeWidth="1" opacity="0.45">
+      <g stroke="var(--accent-ink)" strokeWidth="1" opacity="0.55">
         <path d="M20 20h16M28 12v16" />
         <path d="M264 20h16M272 12v16" />
         <path d="M20 100h16M28 92v16" />

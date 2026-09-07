@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { OWNER, SOCIAL_LINKS } from "../data/links";
 import { SECTIONS } from "../data/sections";
 import Clock from "./Clock";
+import Monogram from "./Monogram";
+import ThemeToggle from "./ThemeToggle";
 
 function SocialGlyph({ name }: { name: string }) {
   const p = {
@@ -45,33 +47,33 @@ export default function Taskbar() {
         {/* brand — doubles as "home" */}
         <Link
           href="/"
-          className="abk-focus group flex items-center gap-2.5 rounded-lg px-1.5 py-1 transition-colors hover:bg-white/5"
+          className="abk-focus group flex items-center gap-2.5 rounded-lg px-1.5 py-1 transition-colors hover:bg-accent-soft"
           aria-label={`${OWNER.name} — desktop`}
         >
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-[#c9a84c]/45 bg-[#c9a84c]/10 font-display text-[15px] leading-none tracking-[0.06em] text-[#e4cd8a] pt-[3px]">
-            ABK
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-accent-line-strong bg-accent-soft-2 text-accent-ink">
+            <Monogram className="h-[22px] w-[22px]" />
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="font-display text-[15px] tracking-[0.09em] text-[#ededf0]">
+            <span className="font-display text-[15px] font-semibold tracking-[0.06em] text-ink">
               {OWNER.name.toUpperCase()}
             </span>
-            <span className="text-[10px] tracking-[0.14em] text-[#a6a6b0] uppercase">
+            <span className="text-[10px] tracking-[0.14em] text-muted uppercase">
               {OWNER.role}
             </span>
           </span>
         </Link>
 
-        <span className="hidden h-6 w-px bg-white/10 sm:block" />
+        <span className="hidden h-6 w-px bg-line-2 sm:block" />
 
         {/* active section indicator */}
         <div className="min-w-0 flex-1">
           {active ? (
-            <span className="inline-flex max-w-full items-center gap-2 truncate rounded-md border border-[#c9a84c]/30 bg-[#c9a84c]/[0.07] px-2.5 py-1 text-[11px] tracking-[0.1em] text-[#e4cd8a] uppercase">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#c9a84c]" />
+            <span className="inline-flex max-w-full items-center gap-2 truncate rounded-md border border-accent-line bg-accent-soft px-2.5 py-1 text-[11px] tracking-[0.1em] text-accent-ink uppercase">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-ink" />
               <span className="truncate">{active.label}</span>
             </span>
           ) : (
-            <span className="hidden text-[11px] tracking-[0.12em] text-[#6f6f79] uppercase md:inline">
+            <span className="hidden text-[11px] tracking-[0.12em] text-faint uppercase md:inline">
               {OWNER.location}
             </span>
           )}
@@ -87,14 +89,15 @@ export default function Taskbar() {
               rel="noopener noreferrer"
               title={l.label}
               aria-label={l.label}
-              className="abk-focus grid h-9 w-9 place-items-center rounded-lg text-[#a6a6b0] transition-colors hover:bg-white/[0.07] hover:text-[#e4cd8a]"
+              className="abk-focus grid h-9 w-9 place-items-center rounded-lg text-muted transition-colors hover:bg-accent-soft hover:text-accent-ink"
             >
               <SocialGlyph name={l.name} />
             </a>
           ))}
         </nav>
 
-        <span className="hidden h-6 w-px bg-white/10 sm:block" />
+        <span className="hidden h-6 w-px bg-line-2 sm:block" />
+        <ThemeToggle />
         <Clock />
       </div>
     </footer>

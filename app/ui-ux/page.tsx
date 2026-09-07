@@ -13,7 +13,7 @@ function WireframeMotif() {
   return (
     <svg
       viewBox="0 0 300 120"
-      className="h-[120px] w-full max-w-[420px] text-[#c9a84c]"
+      className="h-[120px] w-full max-w-[420px] text-accent-ink"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"

@@ -3,24 +3,41 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Taskbar from "./components/Taskbar";
 import Wallpaper from "./components/Wallpaper";
+import { THEME_INIT_SCRIPT } from "./theme-script";
 import "./globals.css";
 
 // Self-hosted so the build never depends on a Google Fonts fetch.
-const bebas = localFont({
-  src: "./fonts/bebas-neue-latin-400-normal.woff2",
-  weight: "400",
-  style: "normal",
-  variable: "--font-bebas",
+
+/** Display / headings — the Didone half of the identity. */
+const playfair = localFont({
+  src: [
+    { path: "./fonts/playfair-display-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/playfair-display-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/playfair-display-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/playfair-display-latin-700-normal.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const cairo = localFont({
+/** Body — a neutral grotesque that lets Playfair carry the voice. */
+const inter = localFont({
   src: [
-    { path: "./fonts/cairo-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/cairo-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/cairo-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/inter-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/inter-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/inter-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/inter-latin-700-normal.woff2", weight: "700", style: "normal" },
   ],
-  variable: "--font-cairo",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+/** Script — the "A.M" signature from the logo lockup. */
+const greatVibes = localFont({
+  src: "./fonts/great-vibes-latin-400-normal.woff2",
+  weight: "400",
+  style: "normal",
+  variable: "--font-great-vibes",
   display: "swap",
 });
 
@@ -67,7 +84,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0c",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f4ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0f15" },
+  ],
   initialScale: 1,
   width: "device-width",
 };
@@ -78,12 +98,20 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${bebas.variable} ${cairo.variable}`}>
+    <html
+      lang="en"
+      // the pre-paint script sets data-theme before React hydrates
+      suppressHydrationWarning
+      className={`${playfair.variable} ${inter.variable} ${greatVibes.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="font-sans antialiased">
         <Wallpaper />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-[#c9a84c] focus:px-4 focus:py-2 focus:text-black"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-accent-ink focus:px-4 focus:py-2 focus:text-on-accent"
         >
           Skip to content
         </a>

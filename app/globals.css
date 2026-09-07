@@ -1,114 +1,364 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   ABK design tokens
-   Gold #c9a84c on near-black. Display: Bebas Neue. Body: Cairo.
+   Abubakr Mala — brand tokens
+   Cream ground #f7f4ef, black ink, pale-blue circuit accent #93a9d4.
+   Display: Playfair Display. Body: Inter. Script: Great Vibes.
+
+   Light is the default. Dark is a night version of the SAME identity —
+   same blue accent, same serif — never a second brand.
+
+   Every runtime token is a plain custom property on :root; the @theme inline
+   block below only maps them onto Tailwind utility names, so `text-muted`,
+   `border-accent-line` etc. resolve through var() and flip with the theme.
    ========================================================================== */
 
-@theme {
-  --color-ink: #0b0b0c;
-  --color-ink-2: #131316;
-  --color-ink-3: #1c1c21;
-  --color-line: #2a2a31;
-  --color-gold: #c9a84c;
-  --font-display: var(--font-bebas);
-  --font-sans: var(--font-cairo);
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-glass: var(--glass);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-line: var(--accent-line);
+  --color-accent-line-strong: var(--accent-line-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-2: var(--accent-soft-2);
+  --color-on-accent: var(--on-accent);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-script: var(--font-great-vibes);
 }
 
-@theme {
-  --color-gold-soft: #e4cd8a;
-  --color-mist: #a6a6b0;
-  --color-chalk: #ededf0;
-}
+/* ---------- light palette (default) ------------------------------------ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --tb-h: 56px;
+
+  --bg: #f7f4ef;
+  --surface: #f9f5f2;
+  --surface-2: #efe9e1;
+  --glass: rgb(249 245 242 / 0.94);
+
+  --ink: #000000;
+  --ink-2: #1c1c20;
+  --muted: #4a4a52;
+  --faint: #68686f;
+
+  --line: #ded7cc;
+  --line-2: #c6bdb0;
+
+  --accent: #93a9d4;
+  --accent-ink: #3c5490;
+  --accent-line: #cad2e3;
+  --accent-line-strong: #a2b4d8;
+  --accent-soft: #ededec;
+  --accent-soft-2: #e7e8eb;
+  --on-accent: #f7f4ef;
+
+  /* wallpaper + section motifs */
+  --wall-a: #eef1f7;
+  --wall-b: #f7f4ef;
+  --wall-c: #f4efe6;
+  --grid-line: rgb(60 84 144 / 0.055);
+  --trace: rgb(94 124 180 / 0.34);
+  --trace-strong: rgb(72 100 156 / 0.55);
+  --node: rgb(72 100 156 / 0.5);
+  --vignette: rgb(120 104 80 / 0.11);
+  --signature: rgb(60 84 144 / 0.095);
+  --accent-dot: rgb(60 84 144 / 0.22);
+  --screen-line: rgb(60 84 144 / 0.07);
+  --motif-blend: multiply;
+  --plate-1: #93a9d4;
+  --plate-2: #5f77ad;
+  --plate-3: #b7c6e2;
+
+  /* taskbar — opaque by design in both themes */
+  --taskbar-bg: #f3eee7;
+  --taskbar-line: #dcd4c8;
+  --taskbar-shadow: rgb(62 52 36 / 0.12);
 }
 
-/* Only the root gets a painted background. A background on <body> paints
-   ON TOP of the fixed z-index:-1 wallpaper and would hide it entirely. */
-html {
-  background: var(--color-ink);
+/* ---------- dark palette ------------------------------------------------ */
+/* Declared twice on purpose: once for system preference before any explicit
+   choice, once for an explicit choice. CSS cannot share a declaration block
+   across an at-rule boundary — keep the two in sync. */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg: #0c0f15;
+    --surface: #151a23;
+    --surface-2: #10141b;
+    --glass: rgb(21 26 35 / 0.90);
+
+    --ink: #f6f4f0;
+    --ink-2: #e6e3dd;
+    --muted: #a9b0bd;
+    --faint: #8b929f;
+
+    --line: #242c38;
+    --line-2: #36404f;
+
+    --accent: #93a9d4;
+    --accent-ink: #aec2e7;
+    --accent-line: #374052;
+    --accent-line-strong: #56647e;
+    --accent-soft: #1a1e28;
+    --accent-soft-2: #232935;
+    --on-accent: #0c0f15;
+
+    --wall-a: #131a26;
+    --wall-b: #0c0f15;
+    --wall-c: #090b10;
+    --grid-line: rgb(147 169 212 / 0.05);
+    --trace: rgb(147 169 212 / 0.24);
+    --trace-strong: rgb(147 169 212 / 0.48);
+    --node: rgb(147 169 212 / 0.42);
+    --vignette: rgb(0 0 0 / 0.55);
+    --signature: rgb(147 169 212 / 0.09);
+    --accent-dot: rgb(147 169 212 / 0.22);
+    --screen-line: rgb(147 169 212 / 0.07);
+    --motif-blend: screen;
+    --plate-1: #93a9d4;
+    --plate-2: #4a5f8c;
+    --plate-3: #c3cee4;
+
+    --taskbar-bg: #10141c;
+    --taskbar-line: #262e3b;
+    --taskbar-shadow: rgb(0 0 0 / 0.55);
+  }
 }
 
-body {
-  background: transparent;
-  color: var(--color-chalk);
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0c0f15;
+  --surface: #151a23;
+  --surface-2: #10141b;
+  --glass: rgb(21 26 35 / 0.90);
+
+  --ink: #f6f4f0;
+  --ink-2: #e6e3dd;
+  --muted: #a9b0bd;
+  --faint: #8b929f;
+
+  --line: #242c38;
+  --line-2: #36404f;
+
+  --accent: #93a9d4;
+  --accent-ink: #aec2e7;
+  --accent-line: #374052;
+  --accent-line-strong: #56647e;
+  --accent-soft: #1a1e28;
+  --accent-soft-2: #232935;
+  --on-accent: #0c0f15;
+
+  --wall-a: #131a26;
+  --wall-b: #0c0f15;
+  --wall-c: #090b10;
+  --grid-line: rgb(147 169 212 / 0.05);
+  --trace: rgb(147 169 212 / 0.24);
+  --trace-strong: rgb(147 169 212 / 0.48);
+  --node: rgb(147 169 212 / 0.42);
+  --vignette: rgb(0 0 0 / 0.55);
+  --signature: rgb(147 169 212 / 0.09);
+  --accent-dot: rgb(147 169 212 / 0.22);
+  --screen-line: rgb(147 169 212 / 0.07);
+  --motif-blend: screen;
+  --plate-1: #93a9d4;
+  --plate-2: #4a5f8c;
+  --plate-3: #c3cee4;
+
+  --taskbar-bg: #10141c;
+  --taskbar-line: #262e3b;
+  --taskbar-shadow: rgb(0 0 0 / 0.55);
 }
 
-body {
-  min-height: 100dvh;
+@layer base {
+  /* Only the root gets a painted background. A background on <body> paints
+     ON TOP of the fixed z-index:-1 wallpaper and would hide it entirely. */
+  html {
+    background: var(--bg);
+  }
+
+  body {
+    background: transparent;
+    color: var(--ink-2);
+    min-height: 100dvh;
+  }
 }
 
-/* ---------- wallpaper ------------------------------------------------- */
+/* Everything below sits in the components layer so Tailwind utilities
+   (hover:border-…, bg-…) still win over these base surfaces. */
+@layer components {
+  /* ---------- wallpaper ------------------------------------------------ */
 
-.abk-wallpaper {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  background:
-    radial-gradient(58% 46% at 80% 2%, #2b2416 0%, #16140e 42%, transparent 68%),
-    radial-gradient(70% 60% at 8% 96%, #101219 0%, transparent 58%),
-    linear-gradient(180deg, #0c0c0f 0%, #070709 100%);
+  .abk-wallpaper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+      radial-gradient(66% 50% at 80% -4%, var(--wall-a) 0%, transparent 64%),
+      radial-gradient(64% 56% at 2% 104%, var(--wall-c) 0%, transparent 62%),
+      var(--wall-b);
+  }
+
+  .abk-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(72% 62% at 76% 14%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(72% 62% at 76% 14%, #000 0%, transparent 78%);
+    pointer-events: none;
+  }
+
+  /* the circuit-trace head profile from the logo kit */
+  .abk-circuit {
+    position: absolute;
+    top: 50%;
+    right: -7%;
+    width: min(80vw, 780px);
+    transform: translateY(-52%);
+    color: var(--trace);
+    pointer-events: none;
+  }
+
+  .abk-circuit svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* on a phone the mark would be cropped to a few stray traces, so scale it
+     up and push it off the corner instead — the profile still reads */
+  @media (max-width: 640px) {
+    .abk-circuit {
+      top: 58%;
+      right: -30%;
+      width: 132vw;
+    }
+  }
+
+  .abk-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      104% 84% at 62% 22%,
+      transparent 34%,
+      var(--vignette) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* the script "A.M" from the signature lockup, as a watermark */
+  .abk-signature {
+    position: absolute;
+    right: clamp(14px, 5vw, 68px);
+    bottom: calc(var(--tb-h) + clamp(14px, 4vh, 52px));
+    font-family: var(--font-script), cursive;
+    font-size: clamp(46px, 9vw, 104px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--signature);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ---------- shared surfaces ------------------------------------------ */
+
+  .abk-glass {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .abk-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--accent-line-strong) 0%,
+      var(--accent-line) 48%,
+      transparent 100%
+    );
+  }
+
+  .abk-focus:focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
+
+  /* The taskbar sits over scrolling content, so it is opaque by design —
+     translucency let page text read straight through it. */
+  .abk-taskbar {
+    background: var(--taskbar-bg);
+    border-top: 1px solid var(--taskbar-line);
+    box-shadow: 0 -14px 30px var(--taskbar-shadow);
+  }
+
+  /* ---------- section motifs ------------------------------------------- */
+
+  /* graphic design: overlapping process plates — multiply on cream,
+     screen on the night ground, the same three inks either way. */
+  .abk-plates {
+    mix-blend-mode: var(--motif-blend);
+  }
 }
 
-/* light beams — the geometry of the reference, none of its imagery */
-.abk-beam {
-  position: absolute;
-  top: -30%;
-  left: 78%;
-  width: 15vmax;
-  height: 175vmax;
-  transform-origin: 50% 0%;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 208, 145, 0.30) 0%,
-    rgba(201, 168, 76, 0.10) 26%,
-    rgba(201, 168, 76, 0.028) 52%,
-    transparent 74%
-  );
-  filter: blur(16px);
-  pointer-events: none;
+/* ---------- theme toggle icon swap -------------------------------------- */
+/* Driven purely by CSS so the correct glyph is on screen at first paint and
+   the button markup is identical on server and client. */
+
+.abk-icon-sun {
+  display: block;
 }
 
-.abk-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(201, 168, 76, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 168, 76, 0.06) 1px, transparent 1px);
-  background-size: 78px 78px;
-  mask-image: radial-gradient(62% 52% at 74% 16%, #000 0%, transparent 76%);
-  pointer-events: none;
+.abk-icon-moon {
+  display: none;
 }
 
-.abk-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(100% 80% at 62% 26%, transparent 30%, rgba(0, 0, 0, 0.55) 72%, rgba(0, 0, 0, 0.86) 100%);
-  pointer-events: none;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .abk-icon-sun {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .abk-icon-moon {
+    display: block;
+  }
 }
 
-/* ---------- shared surfaces ------------------------------------------- */
-
-.abk-glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+:root[data-theme="dark"] .abk-icon-sun {
+  display: none;
 }
 
-.abk-rule {
-  height: 1px;
-  background: linear-gradient(90deg, rgba(201, 168, 76, 0.55), rgba(201, 168, 76, 0.06) 60%, transparent);
+:root[data-theme="dark"] .abk-icon-moon {
+  display: block;
 }
 
-.abk-focus:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
-  border-radius: 12px;
+:root[data-theme="light"] .abk-icon-sun {
+  display: block;
+}
+
+:root[data-theme="light"] .abk-icon-moon {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -117,21 +367,5 @@ body {
   *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
-  }
-}
-
-/* The taskbar sits over scrolling content, so it is opaque by design —
-   translucency let page text read straight through it. */
-.abk-taskbar {
-  background: rgba(10, 10, 12, 0.94);
-  border-top: 1px solid rgba(201, 168, 76, 0.16);
-  box-shadow: 0 -14px 30px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-}
-
-@supports not (backdrop-filter: blur(1px)) {
-  .abk-taskbar {
-    background: #0a0a0c;
   }
 }
