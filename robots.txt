@@ -1,5 +1,4 @@
 User-Agent: *
 Allow: /
-Disallow: /_next/static/chunks/
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://abuba200611-cmd.github.io/sitemap.xml
