@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cowork agent output folder (verification screenshots, not project files)
+/Claude outputs/
