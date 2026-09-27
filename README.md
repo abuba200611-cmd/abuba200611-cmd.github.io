@@ -15,5 +15,3 @@ This is my personal portfolio, forked from [mohitvirli/mohitvirli.github.io](htt
 - GSAP
 - Zustand
 - Tailwind
-
-Deployed via GitHub Actions ([nextjs.yml](.github/workflows/nextjs.yml)).
