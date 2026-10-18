@@ -26,5 +26,5 @@ export const OWNER = {
   name: "Abubakr Mala",
   brand: "AM",
   role: "AI Automation Engineer",
-  location: "Jeddah, Saudi Arabia",
+  location: "Saudi Arabia",
 };

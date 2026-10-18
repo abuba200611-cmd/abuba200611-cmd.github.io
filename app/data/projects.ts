@@ -64,7 +64,7 @@ export const WEB_PROJECTS: WebProject[] = [
     title: "Perfect Fitness",
     date: "Jul 2026",
     summary:
-      "Bilingual site for a women's gym in Jeddah — Arabic/English with full RTL, dark mode, and complete on-page SEO.",
+      "Bilingual site for a women's gym — Arabic/English with full RTL, dark mode, and complete on-page SEO.",
     stack: ["Next.js", "Tailwind", "i18n", "SEO"],
     url: "https://perfect-fitness-jeddah.netlify.app",
     host: "perfect-fitness-jeddah.netlify.app",
@@ -73,7 +73,7 @@ export const WEB_PROJECTS: WebProject[] = [
     title: "Halawiyat Alhafla",
     date: "Jul 2026",
     summary:
-      "Bakery site in Jeddah with a live 3D cake designer — customers build the cake in the browser before ordering.",
+      "Bakery site with a live 3D cake designer — customers build the cake in the browser before ordering.",
     stack: ["Three.js", "React", "Tailwind"],
     url: "https://halawiyat-alhafla-jeddah.netlify.app",
     host: "halawiyat-alhafla-jeddah.netlify.app",

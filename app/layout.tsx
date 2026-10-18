@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     template: "%s — Abubakr Mala",
   },
   description:
-    "Portfolio of Abubakr Mala (AM) — n8n workflow automation, AI agents, web development and design, from Jeddah, Saudi Arabia.",
+    "Portfolio of Abubakr Mala (AM) — n8n workflow automation, AI agents, web development and design, from Saudi Arabia.",
   keywords:
-    "Abubakr Mala, AM, AI Automation Engineer, n8n, AI agents, Salla, UI/UX Designer, Graphic Designer, Next.js, Portfolio, Jeddah, Saudi Arabia",
+    "Abubakr Mala, AM, AI Automation Engineer, n8n, AI agents, Salla, UI/UX Designer, Graphic Designer, Next.js, Portfolio, Saudi Arabia",
   authors: [{ name: "Abubakr Mala" }],
   creator: "Abubakr Mala",
   publisher: "Abubakr Mala",
